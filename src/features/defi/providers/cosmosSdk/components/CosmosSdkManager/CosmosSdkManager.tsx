@@ -1,9 +1,7 @@
 import { GetStarted } from 'features/defi/components/GetStarted/GetStarted'
 import { LearnMore } from 'features/defi/components/LearnMore/LearnMore'
-import {
-  DefiAction,
-  DefiParams
-} from 'features/defi/contexts/DefiManagerProvider/DefiManagerProvider'
+import { DefiAction } from 'features/defi/contexts/DefiManagerProvider/DefiManagerProvider'
+import { AnimatePresence } from 'framer-motion'
 import { useParams } from 'react-router'
 import { MemoryRouter, Route, RouteComponentProps, Switch } from 'react-router-dom'
 
