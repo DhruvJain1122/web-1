@@ -1,5 +1,6 @@
 import { Box, Flex } from '@chakra-ui/layout'
 import { Button, VStack } from '@chakra-ui/react'
+import { useHistory, useLocation } from 'react-router-dom'
 import osmosis from 'assets/osmosis.svg'
 import { Text } from 'components/Text'
 
@@ -14,6 +15,14 @@ const CAIP19_TO_MAX_APR = {
 }
 
 export const GetStarted = ({ assetId: caip19 }: GetStartedProps) => {
+  const history = useHistory()
+  const location = useLocation()
+  const handleLearnMoreClick = () => {
+    history.push({
+      pathname: `/defi/vault/cosmos/learn-more`,
+      state: { background: location }
+    })
+  }
   // TODO: parentheses are nice but let's get asset name from selectAssetByCAIP19 instead of this
   const asset = (_ => ({
     name: 'Osmo'
@@ -30,6 +39,7 @@ export const GetStarted = ({ assetId: caip19 }: GetStartedProps) => {
       >
         <DefiModalHeader
           headerImageSrc={osmosis}
+          headerImageWidth='68px'
           headerText={['defi.getStarted.header', { assetName: asset.name, maxApr }]}
         />
         <Box textAlign='center'>
@@ -59,7 +69,7 @@ export const GetStarted = ({ assetId: caip19 }: GetStartedProps) => {
               zIndex={1}
               variant='ghost'
               colorScheme='white'
-              onClick={() => 'Learn More'}
+              onClick={handleLearnMoreClick}
             >
               <Text translation='defi.getStarted.cta.learnMore' />
             </Button>

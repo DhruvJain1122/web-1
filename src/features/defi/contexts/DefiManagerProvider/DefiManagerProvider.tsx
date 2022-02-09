@@ -23,7 +23,8 @@ export enum DefiProvider {
 export enum DefiAction {
   Deposit = 'deposit',
   Withdraw = 'withdraw',
-  GetStarted = 'get-started'
+  GetStarted = 'get-started',
+  LearnMore = 'learn-more'
 }
 
 export type DefiParams = {
@@ -62,16 +63,15 @@ export function DefiManagerProvider({ children }: DefiManagerProviderProps) {
     <DefiManagerContext.Provider value={null}>
       <YearnProvider>
         {children}
-        {background && (
-          <Route
-            path='/defi/:earnType/:provider/:action'
-            render={({ match: { params } }) => {
-              const { provider } = params
-              const Module = DefiModules[provider as DefiProvider]
-              return <DefiModal>{Module ? <Module /> : <NotFound />}</DefiModal>
-            }}
-          />
-        )}
+        <Route
+          path='/defi/:earnType/:provider/:action'
+          render={({ match: { params } }) => {
+            if (!background) return null
+            const { provider } = params
+            const Module = DefiModules[provider as DefiProvider]
+            return <DefiModal>{Module ? <Module /> : <NotFound />}</DefiModal>
+          }}
+        />
       </YearnProvider>
     </DefiManagerContext.Provider>
   )
