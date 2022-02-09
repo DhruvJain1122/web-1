@@ -33,7 +33,6 @@ export const CosmosSdkManager = ({ assetId = 'cosmoshub-3/slip44:118' }: CosmosS
             if (params.action === DefiAction.LearnMore) {
               return <LearnMore />
             }
-            k
             return null
           }}
         />
