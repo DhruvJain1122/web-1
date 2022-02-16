@@ -44,7 +44,8 @@ export const initAsset: A = {
   explorerTxLink: 'https://etherscan.io/tx/',
   explorerAddressLink: '',
   dataSource: AssetDataSource.CoinGecko,
-  description: ''
+  description: '',
+  isTrustedDescription: false
 }
 
 export const initMarketData: MarketData = {

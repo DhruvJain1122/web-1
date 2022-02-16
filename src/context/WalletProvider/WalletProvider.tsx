@@ -91,7 +91,7 @@ export type ActionTypes =
   | { type: WalletActions.SET_WALLET_MODAL; payload: boolean }
   | { type: WalletActions.RESET_STATE }
 
-const reducer = (state: InitialState, action: ActionTypes) => {
+export const reducer = (state: InitialState, action: ActionTypes) => {
   switch (action.type) {
     case WalletActions.SET_ADAPTERS:
       return { ...state, adapters: action.payload }
@@ -142,7 +142,10 @@ const reducer = (state: InitialState, action: ActionTypes) => {
 const WalletContext = createContext<IWalletContext | null>(null)
 
 export const WalletProvider = ({ children }: { children: React.ReactNode }): JSX.Element => {
+  // const localData = window.localStorage.getItem("state")
+  // const stateData : InitialState = localData ? JSON.parse(localData) : initialState
   const [state, dispatch] = useReducer(reducer, initialState)
+  // alert(stateData?.isConnected)
   useKeyringEventHandler(state)
   useKeepKeyEventHandler(state, dispatch)
   useNativeEventHandler(state, dispatch)

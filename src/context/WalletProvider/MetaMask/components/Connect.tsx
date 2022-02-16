@@ -84,6 +84,8 @@ export const MetaMaskConnect = ({ history }: MetaMaskSetupProps) => {
           payload: { wallet, name, icon, deviceId }
         })
         dispatch({ type: WalletActions.SET_IS_CONNECTED, payload: true })
+        // window.localStorage.setItem("state", JSON.stringify(state))
+        // alert(state.isConnected)
         history.push('/metamask/success')
       } catch (e: any) {
         if (e?.message?.startsWith('walletProvider.')) {
@@ -95,6 +97,7 @@ export const MetaMaskConnect = ({ history }: MetaMaskSetupProps) => {
         }
       }
     }
+
     setLoading(false)
   }
 
